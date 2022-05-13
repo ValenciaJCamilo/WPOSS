@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./assets/img/icon.png">
+    <!--=============== SEO TAGS ===============-->
+    <meta name="description" content="Hey, este es un ejercicio práctico de vistas en HTML y CSS realizado para poder imgresar a la empresa WPOSS :). Esta es la vista del dashboard">
+    <meta name="keywords" content="Web Developer, Web Development, WPOSS, HTML,CSS,HTML5,CSS3,JavaScript, Jquery, Frontend Development, UI, UX, Web, Web design">
+    <meta name="author" content="Camilo Valencia">
+    <meta name="copyright" content="Camilo Valencia" />
+    <meta name="robots" content="follow" />
+    <!--=============== GOOGLE FONTS ===============-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!--=============== BOXICONS ===============-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="./assets/styles/logs.css">
+    <!--=============== ICON ===============-->
+    <link rel="icon" href="https://icons.iconarchive.com/icons/pelfusion/flat-file-type/512/log-icon.png">
+    <title>Logs</title>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="user__information">
+            <div class="user__logo">
+                <i class='bx bx-user-circle userlogo'></i>
+                <div class="user_inf">
+                    <div class="user__username">
+                        <span>Usuario:⠀</span>
+                        <p>R4gnar</p>
+                    </div>
+                    <div class="user__fullname">
+                        <span>Nombre:⠀</span>
+                        <p>Camilo Valencia</p>
+                    </div>
+                </div>
+            </div>
+            <div id="navMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <ul class="nav__list">
+            <li>
+                <a href="#" class="menufoc active" id="kkk" onclick="mostrarSesion();">
+                    <i class='bx bx-intersect'></i>
+                    <span class=" links__name">Log Sesión</span>
+                </a>
+                <span class="tooltip ">Log Sesión</span>
+            </li>
+            <li>
+                <a href="#" class="menufoc active" onclick="mostrarData();">
+                    <i class='bx bx-data'></i>
+                    <span class=" links__name ">Log Database</span>
+                </a>
+                <span class="tooltip ">Log Database</span>
+            </li>
+            <li>
+                <a href="#" class="menufoc active" onclick="cerrarSesion();">
+                    <i class='bx bx-log-out'></i>
+                    <span class="links__name ">Cerrar sesión</span>
+                </a>
+                <span class="tooltip ">Cerrar sesión</span>
+            </li>
+        </ul>
+    </div>
+    <div class="header__cont ">
+        <header class="header ">
+            <h1>Aplicación Login</h1>
+        </header>
+    </div>
+    <div class="header__cont jeje">
+    </div>
+    <main>
+        <div class="test">
+            <h2 class="table-title" id="title-sesion">Log Sesion</h2>
+            <div class="container-table " id="idlogSes">
+                <table class=" tableSesion ">
+                    <!-- <caption>Log Sesión</caption> -->
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Cédula</th>
+                            <th>Nombre Sesión</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Id ">1</td>
+                            <td data-label="Cédula ">1005163899</td>
+                            <td data-label="Nombre Sesión ">Inició sesión</td>
+                            <td data-label="Fecha ">3/05/2022 11:45:02</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Id ">2</td>
+                            <td data-label="Cédula ">6391456</td>
+                            <td data-label="Nombre Sesión ">Inició sesión</td>
+                            <td data-label="Fecha ">3/05/2022 11:53:29</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Id ">3</td>
+                            <td data-label="Cédula ">6391456</td>
+                            <td data-label="Nombre Sesión ">Cerró sesión</td>
+                            <td data-label="Fecha ">3/05/2022 11:56:30</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Id ">4</td>
+                            <td data-label="Cédula ">1005163899</td>
+                            <td data-label="Nombre Sesión ">Cerró sesión</td>
+                            <td data-label="Fecha ">3/05/2022 12:30:55</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Id ">5</td>
+                            <td data-label="Cédula ">10203040</td>
+                            <td data-label="Nombre Sesión ">Inició sesión</td>
+                            <td data-label="Fecha ">4/05/2022 1:30:22</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Id ">6</td>
+                            <td data-label="Cédula ">10203040</td>
+                            <td data-label="Nombre Sesión ">Cerró sesión</td>
+                            <td data-label="Fecha ">4/05/2022 1:33:21</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Id ">7</td>
+                            <td data-label="Cédula ">090807</td>
+                            <td data-label="Nombre Sesión ">Inició sesión</td>
+                            <td data-label="Fecha ">4/05/2022 1:34:55</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Id ">8</td>
+                            <td data-label="Cédula ">090807</td>
+                            <td data-label="Nombre Sesión ">Cerró sesión</td>
+                            <td data-label="Fecha ">4/05/2022 1:38:31</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Id ">9</td>
+                            <td data-label="Cédula ">123455432</td>
+                            <td data-label="Nombre Sesión ">Inició sesión</td>
+                            <td data-label="Fecha ">4/05/2022 2:30:12</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Id ">10</td>
+                            <td data-label="Cédula ">123455432</td>
+                            <td data-label="Nombre Sesión ">Cerró sesión</td>
+                            <td data-label="Fecha ">4/05/2022 2:31:23</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Id ">11</td>
+                            <td data-label="Cédula ">123455432</td>
+                            <td data-label="Nombre Sesión ">Inició sesión</td>
+                            <td data-label="Fecha ">4/05/2022 2:33:12</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Id ">12</td>
+                            <td data-label="Cédula ">123455432</td>
+                            <td data-label="Nombre Sesión ">Cerró sesión</td>
+                            <td data-label="Fecha ">4/05/2022 2:36:52</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Id ">13</td>
+                            <td data-label="Cédula ">111222</td>
+                            <td data-label="Nombre Sesión ">Inició sesión</td>
+                            <td data-label="Fecha ">4/05/2022 3:33:33</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Id ">14</td>
+                            <td data-label="Cédula ">999888</td>
+                            <td data-label="Nombre Sesión ">Inició sesión</td>
+                            <td data-label="Fecha ">4/05/2022 3:39:21</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Id ">15</td>
+                            <td data-label="Cédula ">111222</td>
+                            <td data-label="Nombre Sesión ">Cerró sesión</td>
+                            <td data-label="Fecha ">4/05/2022 4:32:31</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Id ">16</td>
+                            <td data-label="Cédula ">01020304</td>
+                            <td data-label="Nombre Sesión ">Inició sesión</td>
+                            <td data-label="Fecha ">4/05/2022 2:10:45</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<div>
+
+    <h2 class="table-title tbl-logdb" id="title-database">Log Database</h2>
+        <!-- <div class="container-table-database " id="idlogData "> -->
+            <div class="container-table-database" id="idlogData">
+                <table class="tableSesion ">
+                    <!-- <caption>Log Database</caption> -->
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Tabla</th>
+                            <th>Acción</th>
+                            <th>Descripción</th>
+                            <th>Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Id ">1</td>
+                            <td data-label="Tabla ">Personas</td>
+                            <td data-label="Accion ">Insert</td>
+                            <td data-label="Descripcion ">Se insertó un registro</td>
+                            <td data-label="Fecha ">4/05/2022 3:20:02</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Id ">2</td>
+                            <td data-label="Tabla ">Personas</td>
+                            <td data-label="Accion ">Delete</td>
+                            <td data-label="Descripcion ">Se eliminó un registro</td>
+                            <td data-label="Fecha ">4/05/2022 3:21:15</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Id ">3</td>
+                            <td data-label="Tabla ">Usuarios</td>
+                            <td data-label="Accion ">Update</td>
+                            <td data-label="Descripcion ">Se editó un registro</td>
+                            <td data-label="Fecha ">4/05/2022 3:21:15</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Id ">4</td>
+                            <td data-label="Tabla ">Usuarios</td>
+                            <td data-label="Accion ">Insert</td>
+                            <td data-label="Descripcion ">Se inseró un registro</td>
+                            <td data-label="Fecha ">4/05/2022 3:21:35</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Id ">5</td>
+                            <td data-label="Tabla ">Personas</td>
+                            <td data-label="Accion ">Delete</td>
+                            <td data-label="Descripcion ">Se eliminó un registro</td>
+                            <td data-label="Fecha ">4/05/2022 3:33:35</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Id ">6</td>
+                            <td data-label="Tabla ">Usuarios</td>
+                            <td data-label="Accion ">Update</td>
+                            <td data-label="Descripcion ">Se editó un registro</td>
+                            <td data-label="Fecha ">4/05/2022 3:37:02</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Id ">7</td>
+                            <td data-label="Tabla ">Personas</td>
+                            <td data-label="Accion ">Insert</td>
+                            <td data-label="Descripcion ">Se insertó un registro</td>
+                            <td data-label="Fecha ">4/05/2022 3:45:02</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Id ">8</td>
+                            <td data-label="Tabla ">Usarios</td>
+                            <td data-label="Accion ">Insert</td>
+                            <td data-label="Descripcion ">Se insertó un registro</td>
+                            <td data-label="Fecha ">4/05/2022 3:50:15</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Id ">9</td>
+                            <td data-label="Tabla ">Personas</td>
+                            <td data-label="Accion ">Insert</td>
+                            <td data-label="Descripcion ">Se insertó un registro</td>
+                            <td data-label="Fecha ">4/05/2022 3:54:12</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Id ">10</td>
+                            <td data-label="Tabla ">Usuarios</td>
+                            <td data-label="Accion ">Delete</td>
+                            <td data-label="Descripcion ">Se eliminó un registro</td>
+                            <td data-label="Fecha ">4/05/2022 3:58:30</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    
+</div>
+
+    </main>
+    <script src="test.js "></script>
+</body>
+
+</html>

@@ -1,0 +1,393 @@
+/*=============== CSS VARIABLES  ===============*/
+
+:root {
+    /*Font and typography*/
+    --body-font: 'Montserrat', sans-serif;
+    --h1-font-size: 2.5rem;
+    --normal-font-size: .900rem;
+    --tiny-font-size: .700rem;
+    /*Colors*/
+    --title-color: rgb(31, 31, 31);
+    --text-color: #202020;
+    --bgr-color: #ebebeb;
+    --button-primary-color: #4d76cf;
+    --button-secondary-color: rgb(44, 99, 145);
+}
+
+
+/*=============== SETEAR VALORES POR DEFECTO ===============*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/*=============== BODY STYLE===============*/
+
+body {
+    font-family: var(--body-font);
+    background-color: var(bgr-color);
+}
+
+
+/*=============== HTML STYLE ===============*/
+
+html {
+    scroll-behavior: smooth;
+    transition: all 200ms;
+}
+
+
+/*CENTRAR TODO*/
+
+.signup,
+.login {
+    /*Dimensiones totales de la pantalla*/
+    width: 100%;
+    /*En caso de error volver a 100%*/
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container {
+    display: grid;
+    justify-items: center;
+    background-color: #fff;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 3px 21px 5px rgba(189, 189, 189, 0.66);
+    box-shadow: 0px 3px 21px 5px rgba(189, 189, 189, 0.66);
+    /*Importante para mobile*/
+    height: 98%;
+    /*ANCHO TARJETA*/
+    width: 85%;
+}
+
+
+/*Estilo al ícono de usuario*/
+
+.usericon {
+    font-size: 40px;
+    padding: 20px 0 10px 0;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid rgba(189, 189, 189, 0.66);
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(189, 189, 189, 0.66);
+    margin: auto;
+}
+
+
+/*Correcto posicionamiento del div contenedor de label e input*/
+
+.signup__form-div,
+.login__form-div {
+    position: relative;
+    /*Espacio entre inputs*/
+    margin-bottom: 1rem;
+    /*Altura de input*/
+    height: 2.8rem;
+    width: 100%;
+    /* height: 6vh; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/*Estilizamos el botón Log in*/
+
+.primary-button-signup,
+.primary-button-login {
+    /*Establecemos el color del botón*/
+    background-color: var(--button-primary-color);
+    /*Le damos unos bordes de 5px*/
+    border-radius: 5px;
+    /*Quitamos los border por defecto*/
+    border: none;
+    /*Establecemos el color del texto*/
+    color: #fff;
+    /*ANCHO DE INPUTS*/
+    width: 200px;
+    /*Nos ayuda para que al momento de pasar el cursor por encima, la flecha cambie
+    y pase a ser uma manita, de forma que sepamos que es un elemento para dar clic*/
+    cursor: pointer;
+    /*Establecemos el tamaño de funte del texto*/
+    font-size: 1rem;
+    /*Le damos una negrita al texto*/
+    font-weight: bold;
+    /*Ponemos más alto el botón*/
+    height: 50px;
+    transition: .2s;
+}
+
+.primary-button-signup:hover,
+.primary-button-login:hover {
+    background-color: var(--button-secondary-color);
+}
+
+
+/*Separación botón "iniciar sesión"*/
+
+.primary-button-login {
+    margin-top: 20px;
+}
+
+
+/*Estilo de input*/
+
+.signup__form-input,
+.login__form-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    font-size: 1rem;
+    border: 1px solid rgba(189, 189, 189, 0.66);
+    border-radius: 5px;
+    outline: none;
+    padding: 1rem;
+    background: none;
+    z-index: 1;
+    color: var(--text-color);
+}
+
+
+/*Eliminar flechas del Input type number (documento)*/
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+/*Estilo posicionamiento correcto del texto +*/
+
+.signup__form-tag,
+.login__form-tag {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    padding: 0 .25rem;
+    background-color: #fff;
+    color: #686868;
+    font-size: 1rem;
+    transition: .2s;
+}
+
+
+/*+ Estilo: Momento en que se selecciona un campo: Para el texto*/
+
+.signup__form-input:focus+.signup__form-tag,
+.login__form-input:focus+.login__form-tag {
+    top: -.5rem;
+    left: .8rem;
+    color: var(--button-primary-color);
+    font-size: var(--tiny-font-size);
+    font-weight: 500;
+    z-index: 10;
+}
+
+
+/*+ Estilo: Momento en que se selecciona un campo: Para el borde*/
+
+.signup__form-input:focus,
+.login__form-input:focus {
+    border: 1.5px solid var(--button-primary-color);
+}
+
+
+/*+ Estilo: Momento en que se quita la selección del input para cuando se ha escrito*/
+
+.signup__form-input:not(:placeholder-shown).signup__form-input:not(:focus)+.signup__form-tag,
+.login__form-input:not(:placeholder-shown).login__form-input:not(:focus)+.login__form-tag {
+    top: -.5rem;
+    left: .8rem;
+    font-size: var(--tiny-font-size);
+    z-index: 10;
+    color: #a7a7a7;
+    border-radius: 10px;
+}
+
+
+/*Margenes a la opción alternativa*/
+
+.alternative {
+    margin: 10px 0 30px 0;
+    transition: .2s;
+}
+
+.alternative:hover {
+    font-size: 1.1rem;
+}
+
+
+/*Estilo ícono de check*/
+
+.checkicon {
+    vertical-align: middle;
+    font-size: 30px;
+}
+
+
+/*Texto alternativo*/
+
+.form-a-signup,
+.form-a-login {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+
+/*ESTILO ALERTA*/
+
+.alert {
+    padding-bottom: 12px;
+    text-align: center;
+    position: absolute;
+}
+
+.close{
+    font-size: 100px;
+}
+
+.alertaR {
+    text-align: center;
+    position:fixed;
+    top:10%;
+    padding:1rem;
+    border-radius: 50px;
+    color:white;
+}
+
+.alertaR.danger{
+    background-color:rgb(209, 98, 98);
+}
+
+.alertaR.success{
+    background-color:rgb(24, 109, 7);
+}
+
+.close {
+    font-size: 20px;
+    text-decoration: none;
+    align-items: center;
+    margin-right: 10px;
+    opacity: 0;
+}
+
+
+/*Hacemos un media query para poder aparecer el logo en mobile.
+Hacemos uso de min-width porque los estilos de arriba funcionarán 
+para todas las medidas que sean después de esta que vamos a establecer.
+Si la pantalla es menor de 640px el tamaño del formulario se irá adaptando*/
+
+@media (min-width: 370px) {
+    .signup,
+    .login {
+        height: 100vh;
+    }
+    /*Centrar el formulario*/
+    .form-container {
+        /*Altura total de 98% para que no se pegue totalmente a la pantalla*/
+        height: auto;
+        width: 75%;
+    }
+    .primary-button-signup,
+    .primary-button-login,
+    .signup__form-input,
+    .signup__form-tag,
+    .login__form-input,
+    .login__form-tag {
+        font-size: var(--normal-font-size);
+    }
+    .primary-button-signup,
+    .primary-button-login {
+        width: 250px;
+    }
+    .usericon {
+        font-size: 50px;
+    }
+}
+
+@media (min-width: 640px) {
+    /*Centrar el formulario*/
+    .form-container {
+        height: auto;
+        width: auto;
+    }
+    .primary-button-signup,
+    .primary-button-login,
+    .signup__form-input,
+    .signup__form-tag,
+    .login__form-input,
+    .login__form-tag {
+        font-size: var(--normal-font-size);
+    }
+    .form {
+        margin: 0 100px 12px 100px;
+    }
+    .primary-button-signup,
+    .primary-button-login {
+        width: 340px;
+    }
+    .usericon {
+        font-size: 55px;
+    }
+}
+
+@media (min-width: 900px) {
+    /*Centrar el formulario*/
+    .form-container {
+        /*Altura total de 98% para que no se pegue totalmente a la pantalla*/
+        height: auto;
+        width: auto;
+    }
+    .primary-button-signup,
+    .primary-button-login,
+    .signup__form-input,
+    .signup__form-tag,
+    .login__form-input,
+    .login__form-tag {
+        font-size: var(--normal-font-size);
+    }
+    .form {
+        margin: 0 100px 12px 100px;
+    }
+    .primary-button-signup,
+    .primary-button-login {
+        width: 400px;
+    }
+    .usericon {
+        font-size: 60px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .primary-button-signup,
+    .primary-button-login,
+    .signup__form-input,
+    .signup__form-tag,
+    .login__form-input,
+    .login__form-tag {
+        font-size: var(--normal-font-size);
+    }
+    .form {
+        margin: 0 100px 12px 100px;
+    }
+    .primary-button-signup,
+    .primary-button-login {
+        width: 400px;
+    }
+    .usericon {
+        font-size: 65px;
+    }
+}

@@ -1,0 +1,484 @@
+/*=============== CSS VARIABLES  ===============*/
+
+:root {
+    /*Font and typography*/
+    --body-font: 'Montserrat', sans-serif;
+    --normal-font-size: 1.14rem;
+    --tiny-font-size: .950rem;
+    /*Colors*/
+    --title-color: rgb(31, 31, 31);
+    --text-color: #202020;
+    --bgr-color: rgb(228, 228, 228);
+    --primary-color: #002453;
+    --secondary-color: rgb(0, 27, 49);
+}
+
+
+/*=============== SETEAR VALORES POR DEFECTO ===============*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/*=============== BODY STYLE===============*/
+
+body {
+    font-family: var(--body-font);
+    background-color: #fff;
+    position: relative;
+    min-height: 100vh;
+    width: auto;
+}
+
+
+/*=============== HTML STYLE ===============*/
+
+html {
+    scroll-behavior: smooth;
+    transition: all 200ms;
+}
+
+
+/*=============== SCROLLBAR ===============*/
+
+
+/*General width*/
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+
+/*Scrollbar full body*/
+
+::-webkit-scrollbar-track {
+    /* box-shadow: inset 0 0 10px var(--body-color); */
+    background-color: var(--bgr-color);
+}
+
+
+/*Scrollbar main line*/
+
+::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: var(--primary-color);
+}
+
+
+/*Scrollbar main line hover & active*/
+
+::-webkit-scrollbar-thumb:hover,
+::-webkit-scrollbar-thumb:active {
+    background-color: var(--secondary-color);
+}
+
+.sidebar {
+    /*Posición fija del sidebar*/
+    position: fixed;
+    /*Sidebar pegado en top y a la izquierda*/
+    top: 0;
+    left: 0;
+    /*Padding en Y de 6px y en X de 14px,esto
+    para separar el contenido*/
+    padding: 6px 14px;
+    /*Altura del sidebar de un 100%*/
+    height: 100%;
+    /*Ancho del sidebar*/
+    width: 350px;
+    /*Color del sidebar*/
+    background-color: var(--primary-color);
+    /*Limitante ancho*/
+    max-width: 350px;
+    transition: all 0.5s ease;
+}
+
+
+/*Animación cerrar sidebar*/
+
+.sidebar.active {
+    width: 80px;
+}
+
+.user__information {
+    padding-top: 20px;
+}
+
+
+/*Imagen usuario, nikname y nombre*/
+
+.sidebar .user__information .user__logo {
+    color: #fff;
+    display: flex;
+    height: 90px;
+    width: 100%;
+    align-items: center;
+    justify-content: space-evenly;
+    opacity: 1;
+    pointer-events: none;
+}
+
+
+/*Animación cerrar sidebar*/
+
+.sidebar.active .user__information .user__logo {
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+/*Alinear usuario seguido, nombre seguido*/
+
+.user__username,
+.user__fullname {
+    display: flex;
+    flex-direction: row;
+}
+
+
+/*Usuario y nombre con negrita*/
+
+.user__username span,
+.user__fullname span {
+    font-weight: 900;
+}
+
+.user_inf {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar ul li {
+    position: relative;
+    /*Distancia entre opciones*/
+    height: 50px;
+    /*Ancho de las opciones*/
+    width: 100%;
+    /*Pequeña margen Y-X*/
+    margin: 0 5px;
+    /*Eliminación de línea de los items de la lista*/
+    list-style: none;
+    /*Espaciado*/
+    line-height: 50px;
+}
+
+
+/*SPAN textual hover menú*/
+
+.sidebar.active ul li .tooltip {
+    position: absolute;
+    left: 122px;
+    top: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 6px;
+    height: 35px;
+    line-height: 35px;
+    width: 122px;
+    background: var(--secondary-color);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    color: #fff;
+    transition: 0s;
+    /*Opacidad en 0 para hacerlo aparecer solo cuando se pase por encima*/
+    opacity: 0;
+    pointer-events: none;
+    display: block;
+}
+
+
+/*Animación cerrar sidebar*/
+
+.sidebar ul li .tooltip {
+    display: none;
+}
+
+.sidebar ul li:hover .tooltip {
+    top: 50%;
+    transition: all 0.4s ease;
+    /*Opacidad 0 para que desaparezca cuando se pase por encima en modo grande*/
+    opacity: 1;
+}
+
+
+/*Estilos texto del sidebar*/
+
+.sidebar ul li a {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    border-radius: 12px;
+    white-space: nowrap;
+}
+
+#kkk{
+    background-color: var(--secondary-color);
+    display: block;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li a:active {
+    background-color: var(--secondary-color);
+}
+
+
+
+.sidebar ul li a i {
+    height: 50px;
+    min-width: 50px;
+    border-radius: 12px;
+    line-height: 50px;
+    text-align: center;
+    /*Tamaño ícono acompañado de la lista*/
+    font-size: 2rem;
+    
+}
+
+.sidebar .links__name {
+    opacity: 1;
+    pointer-events: none;
+}
+
+.sidebar .menufoc.active:focus,
+.sidebar .menufoc.active:active {
+    background-color: var(--secondary-color);
+}
+
+
+/*Animación sidebar*/
+
+.sidebar.active .links__name {
+    opacity: 0;
+    pointer-events: auto;
+}
+
+
+/*Tamaño del ícono de logo de usuario*/
+
+.userlogo {
+    font-size: 4.5rem;
+}
+
+.sidebar #navMenu {
+    position: absolute;
+    left: 95%;
+    top: 20px;
+    font-size: 2rem;
+    height: auto;
+    width: 50px;
+    text-align: center;
+    line-height: 50px;
+    transform: translateX(-95%);
+    cursor: pointer;
+}
+
+
+/*Animación cerrar sidebar*/
+
+.sidebar .active #navMenu {
+    left: 95%;
+}
+
+#navMenu>span {
+    display: block;
+    width: 28px;
+    height: 2px;
+    background-color: #fff;
+}
+
+#navMenu>span:not(:last-child) {
+    margin-bottom: 7px;
+}
+
+#navMenu,
+#navMenu>span {
+    transition: all .3s ease-in-out;
+}
+
+#navMenu.active {
+    transition-delay: .4s;
+    /* transform: rotate(45deg); */
+}
+
+#navMenu.active>span:nth-child(2) {
+    width: 0;
+}
+
+#navMenu.active>span:nth-child(1),
+#navMenu.active>span:nth-child(3) {
+    transition-delay: .3s;
+}
+
+#navMenu.active>span:nth-child(1) {
+    transform: translateY(9px);
+}
+
+#navMenu.active>span:nth-child(3) {
+    transform: translateY(-9px) rotate(-90deg);
+}
+
+.header {
+    background: rgb(255, 255, 255);
+    text-align: center;
+    font-size: .750rem;
+    padding: 10px;
+    color: var(--primary-color);
+    padding-left: 350px;
+}
+
+.table-title {
+    font-size: .750rem;
+    color: var(--primary-color);
+    margin-left: 23rem;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.tbl-logdb{
+    display: none;
+}
+
+.jeje {
+    background:var(--bgr-color);
+    text-align: center;
+    font-size: .750rem;
+    padding: 1.3rem;
+    padding-left: 350px;
+}
+
+.sidebar .header h1 {
+    text-align: center;
+}
+
+@media (max-width: 370px) {
+    .header {
+        text-align: end;
+    }
+}
+
+
+/*TABLA*/
+
+
+.container-table {
+    width: 100%;
+    /*Limitante ancho*/
+    max-width: 1000px;
+    margin: auto;
+    border-radius: 10px solid #Fff;
+    /*Para que no se ponga pegado del sidebar*/
+    padding-left: 350px;
+    /*Separa la tabla del header*/
+    /* margin-top: 40px; */
+    /*Separa la tabla del header*/
+    margin-bottom: 40px;
+    /* display: none; */
+}
+
+
+
+
+.container-table-database {
+    width: 100%;
+    /*Limitante ancho*/
+    max-width: 1320px;
+    margin: auto;
+    /*Para que no se ponga pegado del sidebar*/
+    padding-left: 350px;
+    /*Separa la tabla del header*/
+    margin-top: 40px;
+    /*Separa la tabla del header*/
+    margin-bottom: 40px;
+    /*Primera vez que cargue*/
+    display: none;
+}
+
+.tableSesion {
+    width: 100%;
+    border: 1px solid #ccc;
+    /*Para que los campos se junten o no*/
+    border-collapse: collapse;
+    /*Ayuda para que los datos se carguen más rápido y además para que las columns tengan el mismo tamaño*/
+    table-layout: fixed;
+}
+
+
+/*Título de la tabla*/
+
+.tableSesion caption {
+    font-size: 1.2rem;
+    font-weight: 500px;
+    text-transform: uppercase;
+    margin: 8px 0;
+}
+
+.tableSesion tr {
+    /*Color de fondo de las filas*/
+    background-color: #f8f8f8;
+    /*Bordes de la tabla. Filas*/
+    border: 1px solid #ddd;
+    color: var(--text-color);
+}
+
+.tableSesion th,
+.tableSesion td {
+    /*Padding entre cada unos de los campos en Y*/
+    padding: 8px;
+    /*Texto centrado en toda la tabla*/
+    text-align: center;
+    color: var(--text-color);
+}
+
+.tableSesion thead th {
+    /*Encabezados en mayúscula*/
+    text-transform: uppercase;
+    /*Color de fondo de encabezados*/
+    background-color: #ddd;
+}
+
+
+/*RESPONSIVE TABLAS*/
+
+@media (max-width: 1000px) {
+    /*Elimina borde del top*/
+    .tableSesion {
+        border: 0px;
+    }
+    /*Campos del head sin cambio*/
+    .tableSesion thead {
+        display: none;
+    }
+    .tableSesion tr {
+        /*Espacio entre las tablas/Rows*/
+        margin-bottom: 8px;
+        border-bottom: 3px solid #ddd;
+        display: block;
+    }
+    /*Just in case:)*/
+    .tableSesion th,
+    .table td {
+        font-size: 2rem;
+    }
+    .tableSesion td {
+        /*Block para que se posicione uno abajo de otro y no se desordene*/
+        display: block;
+        /*Líneas separados entre filas*/
+        border-bottom: 1px solid #ddd;
+        /*Posiciono el campo a la derecha. Paso de centro a derecha. DATA*/
+        text-align: right;
+    }
+    /*Pseudoelemento para añadir contenido con la propiedad content. 
+Basicamente añado los encabezados a la tabla en la parte izquierda*/
+    .tableSesion td::before {
+        /*Content: Data-label para llamar según lo establecido en el HTML*/
+        content: attr(data-label);
+        font-weight: bold;
+        text-transform: uppercase;
+        /*Propiedad para posicionar un elemento a la izquierda o derecha del contenedor*/
+        float: left;
+    }
+}
