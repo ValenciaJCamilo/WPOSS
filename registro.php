@@ -1,3 +1,68 @@
+<?php
+//CONEXIÓN A LA BASE DE DATOS
+include_once("conexion.php");
+//FUNCIÓN PARA VALIDAR CAMPOS VACÍOS
+function validate($documento,$firstname,$lastname,$email,$username,$password,$repassword,$formbtn)
+{
+    return !empty($documento) && !empty($firstname) && !empty($lastname) && !empty($email) && !empty($username) && !empty($password) && !empty($repassword);
+}
+//VARIABLE NECESARIA PARA SABER EL ESTADO DE LOS CAMPOS Y ASÍ LA ALERTA
+$status="";
+
+if (isset($_POST["formbtn"]) ) {    
+
+    if(validate(...$_POST)){        
+        //VARIABLES 
+        $documento = $_POST["documento"];
+        $firstname = $_POST["firstname"];
+        $lastname = $_POST["lastname"];
+        $email = $_POST["email"];
+        $username = $_POST["username"];
+        $password = $_POST["password"];
+        $repassword = $_POST["repassword"];
+
+        $cantidadRegistro;
+        // SABER SI EL REGISTRO SE ENCUENTRA EN LA BASE DE DATOS
+        $query = "SELECT cc FROM personas WHERE cc = '$documento';";
+        $consulta = pg_query($query);
+        if($consulta){
+            $cantidadRegistro = pg_num_rows($consulta);
+        }
+
+        if($cantidadRegistro == 0){
+            try {
+                //Toma todos los datos dentro del array y los posiciona en las variables
+                $result = pg_query("INSERT INTO personas VALUES($documento,'$firstname','$lastname','$email')");
+                $result = pg_query("INSERT INTO usuarios VALUES($documento,'$username','$password')");
+            } catch (Exception $e) {
+                echo "<center>Registro fallido</center>";
+            }
+            if($result){
+                if($password==$repassword){
+                    $status = "Success";
+                    echo "<center>Registro exitoso</center>";
+                }
+                else{
+                    echo "<center>Las contraseñas no coinciden</center>";
+                }
+            }else{
+                $status = "Danger";
+                echo "<script>";
+                echo "alert('Registro fallido');";
+                echo "</script>";
+                header("location:registro.php");
+            }
+        }else{
+            echo "<center>Ups, el usuario se encuentra registrado</center>";
+        }
+
+    }else{
+        echo "<center>Debes completar todos los campos</center>";
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -30,7 +95,7 @@
         <!--Esta es la sección del icono-->
         <div class="form-container">
             <i class='bx bxs-user usericon'></i>
-            <form action="registro-post.php" method="post" class="form">
+            <form action="registro.php" method="post" class="form" name="form">
                 <!--Campo del documento-->
                 <div class="signup__form-div">
                     <input id="documento" type="number"  name="documento" placeholder=" " title="Número de documento de identidad" class="signup__form-input">
@@ -66,7 +131,6 @@
                     <input id="repassword" type="password" autocomplete  name="repassword" placeholder=" " title="Confirmar contraseña" class="signup__form-input">
                     <label for="repassword" class="signup__form-tag">Confirmar contraseña</label>
                 </div>
-
                 <button name="formbtn" class="primary-button-signup" type="submit">Registrarse</button>
             </form>
             <!--Ancla. Login-->
@@ -78,5 +142,5 @@
         </div>
     </div>
 </body>
-<script src="test.js "></script>
+<!-- <script src="test.js "></script> -->
 </html>
