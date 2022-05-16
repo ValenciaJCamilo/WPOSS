@@ -20,6 +20,10 @@ if (isset($_POST["formbtn"]) ) {
         $username = $_POST["username"];
         $password = $_POST["password"];
         $repassword = $_POST["repassword"];
+        $pass_fuerte=password_hash($password,PASSWORD_DEFAULT);
+        $repass_fuerte=password_hash($repassword,PASSWORD_DEFAULT);
+        echo $pass_fuerte."<br>";
+        echo $repass_fuerte;
 
         $cantidadRegistro;
         // SABER SI EL REGISTRO SE ENCUENTRA EN LA BASE DE DATOS
@@ -29,35 +33,18 @@ if (isset($_POST["formbtn"]) ) {
             $cantidadRegistro = pg_num_rows($consulta);
         }
 
-        if($cantidadRegistro == 0){
-            try {
-                //Toma todos los datos dentro del array y los posiciona en las variables
-                $result = pg_query("INSERT INTO personas VALUES($documento,'$firstname','$lastname','$email')");
-                $result = pg_query("INSERT INTO usuarios VALUES($documento,'$username','$password')");
-            } catch (Exception $e) {
-                echo "<center>Registro fallido</center>";
+        if($cantidadRegistro == 0 && $password==$repassword){
+            //Toma todos los datos dentro del array y los posiciona en las variables
+            $result = pg_query("INSERT INTO personas VALUES($documento,'$firstname','$lastname','$email')");
+            $result = pg_query("INSERT INTO usuarios VALUES($documento,'$username','$pass_fuerte')");
+            echo "<center>Registro exitoso</center>";
             }
-            if($result){
-                if($password==$repassword){
-                    $status = "Success";
-                    echo "<center>Registro exitoso</center>";
-                }
-                else{
-                    echo "<center>Las contraseñas no coinciden</center>";
-                }
-            }else{
-                $status = "Danger";
-                echo "<script>";
-                echo "alert('Registro fallido');";
-                echo "</script>";
-                header("location:registro.php");
-            }
-        }else{
-            echo "<center>Ups, el usuario se encuentra registrado</center>";
+            else
+            {
+            echo "<center>Registro fallido</center>";
         }
-
     }else{
-        echo "<center>Debes completar todos los campos</center>";
+        echo "<center>Registro fallido</center>";
     }
 }
 
