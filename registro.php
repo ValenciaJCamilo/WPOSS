@@ -34,12 +34,15 @@ if (isset($_POST["formbtn"]) ) {
         $cantidadRegistro;
         // SABER SI EL REGISTRO SE ENCUENTRA EN LA BASE DE DATOS. ESTO PARA PODER SABER SI LA PERSONA YA SE ENCUENTRA REGISTRADA
         $query = "SELECT cc FROM personas WHERE cc = '$documento';";
+        $query1 = "SELECT usuario FROM usuarios WHERE usuario = '$username';";
         $consulta = pg_query($query);
-        if($consulta){
+        $consulta1 = pg_query($query1);
+        if($consulta && $consulta1){
             $cantidadRegistro = pg_num_rows($consulta);
+            $cantidadRegistro1 = pg_num_rows($consulta1);
         }
         // SI LA CANTIDAD DE REGISTRO ES = 0 Y LA CONTRASEÑA COINCIDE
-        if($cantidadRegistro == 0 && $password==$repassword){
+        if($cantidadRegistro == 0 && $cantidadRegistro1 == 0 && $password==$repassword){
             //pg_query() ejecuta una consulta en la base de datos
             $result = pg_query("INSERT INTO personas VALUES($documento,'$firstname','$lastname','$email')");
             $result = pg_query("INSERT INTO usuarios VALUES($documento,'$username','$pass_fuerte')");
