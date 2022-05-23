@@ -332,10 +332,11 @@ html {
 .table-title {
     font-size: .750rem;
     color: var(--primary-color);
-    margin-left: 23rem;
+    margin-left: 23.5rem;
     margin-top: 1rem;
     display: flex;
     justify-content: flex-start;
+    margin-bottom: 2.6rem;
 }
 
 .tbl-logdb{

@@ -1,7 +1,62 @@
-<!--CONEXIÓN BASE DE DATOS-->
 <?php
-    include_once("./conexion.php");
+//CONEXIÓN A LA BASE DE DATOS
+include_once("conexion.php");
+//FUNCIÓN PARA VALIDAR CAMPOS VACÍOS
+function validate($documento,$password,$btnlogin)
+{
+    return !empty($documento) && !empty($password);
+}
+
+// Necesario para que la sesión siga en pie 
+session_start();
+$varsesion = $_SESSION;
+if($varsesion != null){
+    header("location:logs.php");
+}
+
+if(isset($_POST['btnlogin'])){
+    if(validate(...$_POST)){ 
+    //VARIABLES
+    $documento = $_POST["documento"];
+    $password = $_POST["password"];
+
+    //CONSULTA PARA TRAER LA CONTRASEÑA DE LA BASE DE DATOS
+    $query="SELECT contrasena FROM usuarios WHERE cc=$documento";
+    $consulta=pg_query($query);
+    // PG_FETCH_ROW ME TRAE LA FILA CONTRASEÑA DE LA BDD
+    $result = pg_fetch_row($consulta);
+    //PG_NUM_ROWS devuelve el número de filas de un resultado.
+    $cantidad=pg_num_rows($consulta);
+    // Si esa cantidad es mayor a 1 (lo que quiere decir que trajo una contraseña)
+    if($cantidad>0){
+        // PASSWORD_VERIFY para hacer el respectivo decrypt del password_hash.
+        // Si la contraseña ingresada por el usuario coincide con la contraseña encriptada de la bdd
+        if(password_verify($password, $result[0])){
+            $_SESSION['Num_doc']=$documento;
+            header("location:logs.php");
+            $query=pg_query("INSERT INTO log_sesion (nombre_sesion,ccus,fecha) VALUES ('Inició Sesión',$documento,current_date)");
+        }else{
+            echo "<script>
+            alert('Contraseña incorrecta');
+            window.location= 'index.php'
+            </script>";  
+        }
+    }else{
+        echo "<script>
+        alert('Datos incorrectos o el usuario no existe');
+        window.location= 'index.php'
+        </script>";  
+    }
+    }else{
+        echo "<script>
+        alert('Por favor, completa todos los campos');
+        window.location= 'index.php'
+        </script>";  
+    }
+}
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -35,7 +90,7 @@
         <!--Esta es la sección del icono-->
         <div class="form-container">
             <i class='bx bxs-user usericon'></i>
-            <form action="/" method="post" class="form" id="formLogin" name="pruebaVal">
+            <form action="index.php" method="post" class="form" name="form" id="formLogin">
                 <!--Mensaje de alerta :p-->
                 <div id="alerta"></div>
 
@@ -49,7 +104,7 @@
                     <input id="password" type="password" autocomplete name="password" placeholder=" " title="Contraseña" class="login__form-input">
                     <label for="password" class="login__form-tag">Contraseña</label>
                 </div>
-                <button class="primary-button-login" type="button" onclick="validarLogin();">Iniciar Sesión</button>
+                <button name="btnlogin" class="primary-button-login" type="submit">Iniciar Sesión</button>
             </form>
             <!--Ancla. Registro-->
             <div class="alternative ">
@@ -61,5 +116,6 @@
     </div>
 </body>
 <script src="test.js "></script>
-
+ <!--=============== SweetAlert ===============-->
+ <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </html>

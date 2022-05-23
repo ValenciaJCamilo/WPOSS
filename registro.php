@@ -6,11 +6,18 @@ function validate($documento,$firstname,$lastname,$email,$username,$password,$re
 {
     return !empty($documento) && !empty($firstname) && !empty($lastname) && !empty($email) && !empty($username) && !empty($password) && !empty($repassword);
 }
-//VARIABLE NECESARIA PARA SABER EL ESTADO DE LOS CAMPOS Y ASÍ LA ALERTA
-$status="";
 
-if (isset($_POST["formbtn"]) ) {    
+// Necesario para que la sesión siga en pie 
+session_start();
+$varsesion = $_SESSION;
+if($varsesion != null){
+    header("location:logs.php");
+}
 
+//CONDICIONAL PARA SABER SI SE ENVÍA EL FORMULARIO O NO 
+// Isset sirve para comprobar si una variable está definida y no es nula
+if (isset($_POST["formbtn"]) ) {
+    //VALIDACIÓN DE CAMPOS VACÍOS    
     if(validate(...$_POST)){        
         //VARIABLES 
         $documento = $_POST["documento"];
@@ -20,34 +27,40 @@ if (isset($_POST["formbtn"]) ) {
         $username = $_POST["username"];
         $password = $_POST["password"];
         $repassword = $_POST["repassword"];
+        //VARIABLES PARA ENCRIPTACIÓN DE CONTRASEÑA
+        // password_hash() genera un hash de contraseña de una cadena.
         $pass_fuerte=password_hash($password,PASSWORD_DEFAULT);
         $repass_fuerte=password_hash($repassword,PASSWORD_DEFAULT);
-        echo $pass_fuerte."<br>";
-        echo $repass_fuerte;
-
         $cantidadRegistro;
-        // SABER SI EL REGISTRO SE ENCUENTRA EN LA BASE DE DATOS
+        // SABER SI EL REGISTRO SE ENCUENTRA EN LA BASE DE DATOS. ESTO PARA PODER SABER SI LA PERSONA YA SE ENCUENTRA REGISTRADA
         $query = "SELECT cc FROM personas WHERE cc = '$documento';";
         $consulta = pg_query($query);
         if($consulta){
             $cantidadRegistro = pg_num_rows($consulta);
         }
-
+        // SI LA CANTIDAD DE REGISTRO ES = 0 Y LA CONTRASEÑA COINCIDE
         if($cantidadRegistro == 0 && $password==$repassword){
-            //Toma todos los datos dentro del array y los posiciona en las variables
+            //pg_query() ejecuta una consulta en la base de datos
             $result = pg_query("INSERT INTO personas VALUES($documento,'$firstname','$lastname','$email')");
             $result = pg_query("INSERT INTO usuarios VALUES($documento,'$username','$pass_fuerte')");
-            echo "<center>Registro exitoso</center>";
-            }
-            else
+            echo "<script>
+            alert('Registro exitoso');
+            window.location= 'index.php'
+            </script>";
+            }else
             {
-            echo "<center>Registro fallido</center>";
-        }
+                echo "<script>
+                alert('Registro fallido');
+                window.location= 'registro.php'
+                </script>";
+            }
     }else{
-        echo "<center>Registro fallido</center>";
+        echo "<script>
+        alert('Por favor completa todos los campos');
+        window.location= 'registro.php'
+        </script>";     
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -129,5 +142,4 @@ if (isset($_POST["formbtn"]) ) {
         </div>
     </div>
 </body>
-<!-- <script src="test.js "></script> -->
 </html>

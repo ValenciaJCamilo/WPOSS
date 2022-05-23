@@ -64,20 +64,3 @@ function validarLogin() {
     alert("Has iniciado sesión");
     location.href = './logs.html'
 }
-
-
-// function validarRegistro() {
-//     const documento = document.getElementById('documento');
-//     const password = document.getElementById('password');
-//     if(documento.textContent()==""){
-//         alert("Debes completar el documento");
-//     }
-//     else{
-//         alert("Has iniciado sesión");
-//         location.href='./logs.html'
-//     }
-// }
-// function validarRegistro() {
-//     alert("Te has registrado correctamente");
-//     location.href = './index.php'
-// }
